@@ -2,18 +2,14 @@ package minihud.renderer;
 
 import org.lwjgl.opengl.GL11;
 
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
 
-import malilib.render.ShapeRenderUtils;
 import malilib.render.buffer.VertexBuilder;
 import malilib.util.data.Color4f;
 import malilib.util.game.wrap.EntityWrap;
 import malilib.util.game.wrap.GameWrap;
 import malilib.util.position.BlockPos;
-import malilib.util.position.Direction;
 import malilib.util.position.Vec3d;
 import minihud.config.Configs;
 import minihud.config.RendererToggle;
@@ -30,7 +26,7 @@ public class OverlayRendererBlockGrid extends MiniHudOverlayRenderer
     @Override
     public boolean needsUpdate(Entity entity)
     {
-        if (this.lastUpdatePos == null)
+        if (this.needsUpdate || this.lastUpdatePos == null)
         {
             return true;
         }
@@ -141,6 +137,7 @@ public class OverlayRendererBlockGrid extends MiniHudOverlayRenderer
                                      Color4f color,
                                      VertexBuilder builder)
     {
+        /* TODO in-20100223
         final int startX = center.getX() - radius;
         final int startY = center.getY() - radius;
         final int startZ = center.getZ() - radius;
@@ -184,6 +181,7 @@ public class OverlayRendererBlockGrid extends MiniHudOverlayRenderer
                 }
             }
         }
+        */
     }
 
     protected void renderLinesAdjacentToNonAir(Vec3d cameraPos,
@@ -193,6 +191,7 @@ public class OverlayRendererBlockGrid extends MiniHudOverlayRenderer
                                                Color4f color,
                                                VertexBuilder builder)
     {
+        /* TODO in-20100223
         final int startX = center.getX() - radius;
         final int startY = center.getY() - radius;
         final int startZ = center.getZ() - radius;
@@ -254,5 +253,6 @@ public class OverlayRendererBlockGrid extends MiniHudOverlayRenderer
                 }
             }
         }
+        */
     }
 }

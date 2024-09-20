@@ -1,5 +1,6 @@
 package minihud.renderer;
 
+/*
 import java.util.HashSet;
 import java.util.Set;
 
@@ -185,3 +186,4 @@ public class OverlayRendererBeaconRange extends MiniHudOverlayRenderer
         return maxY + 4;
     }
 }
+*/

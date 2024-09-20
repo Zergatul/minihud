@@ -1,10 +1,6 @@
 package minihud.mixin.debugrenderer;
 
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.gen.Accessor;
-
-import net.minecraft.client.renderer.debug.DebugRenderer;
-
+/*
 @Mixin(DebugRenderer.class)
 public interface DebugRendererMixin
 {
@@ -26,3 +22,4 @@ public interface DebugRendererMixin
     @Accessor("waterEnabled")
     void minihud_setWaterEnabled(boolean value);
 }
+*/

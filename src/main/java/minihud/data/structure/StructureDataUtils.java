@@ -1,56 +1,8 @@
 package minihud.data.structure;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.List;
-import java.util.Map;
-import javax.annotation.Nullable;
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.ImmutableList;
-import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
-
-import net.minecraft.nbt.NBTBase;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.world.WorldServer;
-import net.minecraft.world.gen.ChunkGeneratorEnd;
-import net.minecraft.world.gen.ChunkGeneratorFlat;
-import net.minecraft.world.gen.ChunkGeneratorHell;
-import net.minecraft.world.gen.ChunkGeneratorOverworld;
-import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraft.world.gen.structure.MapGenScatteredFeature;
-import net.minecraft.world.gen.structure.MapGenStronghold;
-import net.minecraft.world.gen.structure.MapGenStructure;
-import net.minecraft.world.gen.structure.MapGenStructureIO;
-import net.minecraft.world.gen.structure.MapGenVillage;
-import net.minecraft.world.gen.structure.StructureComponent;
-import net.minecraft.world.gen.structure.StructureOceanMonument;
-import net.minecraft.world.gen.structure.StructureStart;
-
-import malilib.config.util.ConfigUtils;
-import malilib.registry.Registry;
-import malilib.util.StringUtils;
-import malilib.util.data.Constants;
-import malilib.util.game.wrap.GameWrap;
-import malilib.util.game.wrap.NbtWrap;
-import malilib.util.nbt.NbtUtils;
-import malilib.util.position.BlockPos;
-import malilib.util.position.IntBoundingBox;
-import minihud.MiniHud;
-import minihud.Reference;
-import minihud.config.RendererToggle;
-import minihud.mixin.structure.ChunkGeneratorEndMixin;
-import minihud.mixin.structure.ChunkGeneratorFlatMixin;
-import minihud.mixin.structure.ChunkGeneratorHellMixin;
-import minihud.mixin.structure.ChunkGeneratorOverworldMixin;
-import minihud.mixin.structure.ChunkProviderServerMixin;
-import minihud.mixin.structure.MapGenStructureMixin;
-import minihud.network.carpet.CarpetStructurePacketHandler;
-import minihud.network.servux.ServuxStructurePacketHandler;
-import minihud.util.MiscUtils;
-
 public class StructureDataUtils
 {
+    /*
     public static void requestStructureDataUpdates()
     {
         if (GameWrap.getClientWorld() != null)
@@ -253,11 +205,13 @@ public class StructureDataUtils
 
             return map;
         }
+        */
 
         /**
          * Reads structures from the vanilla 1.12 and below structure files,
          * and adds any structures of the provided StructureType <b>type</b> to the provided map.
          */
+        /*
         private static void readAndAddStructuresToMap(StructureType type,
                                                       ArrayListMultimap<StructureType, StructureData> map,
                                                       NBTTagCompound rootCompound)
@@ -299,11 +253,13 @@ public class StructureDataUtils
                 }
             }
         }
+        */
 
         /**
          * Reads Temple structures from the vanilla 1.12 and below structure files,
          * and adds them to the provided map. The structure type is read from the child component. 
          */
+        /*
         public static void readAndAddTemplesToMap(ArrayListMultimap<StructureType, StructureData> map, NBTTagCompound rootTag)
         {
             if (NbtWrap.containsCompound(rootTag, "data") == false)
@@ -361,4 +317,5 @@ public class StructureDataUtils
             }
         }
     }
+    */
 }

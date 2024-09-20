@@ -1,5 +1,6 @@
 package minihud.gui.widget.info;
 
+/*
 import malilib.overlay.widget.sub.HotkeyedBooleanConfigStatusWidget;
 import malilib.util.data.ConfigOnTab;
 import minihud.config.StructureToggle;
@@ -11,3 +12,4 @@ public class StructureRendererConfigStatusWidget extends HotkeyedBooleanConfigSt
         super(config.getBooleanConfig(), config::getKeyBind, configOnTab, "minihud:csi_value_structure_toggle");
     }
 }
+*/

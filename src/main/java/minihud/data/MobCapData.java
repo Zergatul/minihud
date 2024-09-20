@@ -3,8 +3,6 @@ package minihud.data;
 import java.util.Arrays;
 import javax.annotation.Nullable;
 
-import net.minecraft.entity.EnumCreatureType;
-
 import malilib.util.MathUtils;
 
 public class MobCapData
@@ -176,6 +174,19 @@ public class MobCapData
 
     public enum EntityCategory
     {
+        MONSTER ("monster"),
+        CREATURE("creature"),
+        AMBIENT ("ambient"),
+        WATER   ("water");
+
+        private final String name;
+
+        EntityCategory(String name)
+        {
+            this.name = name;
+        }
+
+        /* TODO in-20100223
         MONSTER ("monster",  EnumCreatureType.MONSTER),
         CREATURE("creature", EnumCreatureType.CREATURE),
         AMBIENT ("ambient",  EnumCreatureType.AMBIENT),
@@ -189,12 +200,14 @@ public class MobCapData
             this.name = name;
             this.vanillaCategory = vanillaCategory;
         }
+        */
 
         public String getName()
         {
             return this.name;
         }
 
+        /*
         public EnumCreatureType getVanillaCategory()
         {
             return this.vanillaCategory;
@@ -211,6 +224,7 @@ public class MobCapData
                 default:                return null;
             }
         }
+        */
 
         @Nullable
         public static EntityCategory fromVanillaCategoryName(String name)

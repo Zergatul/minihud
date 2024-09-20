@@ -1,5 +1,6 @@
 package minihud.renderer;
 
+/*
 import java.util.Collection;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableList;
@@ -100,3 +101,4 @@ public class OverlayRendererStructures extends MiniHudOverlayRenderer
         }
     }
 }
+*/

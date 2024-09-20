@@ -1,13 +1,8 @@
 package minihud.data;
 
-import net.minecraft.world.WorldServer;
-
-import malilib.util.game.wrap.GameWrap;
-import minihud.config.Configs;
-import minihud.util.MiscUtils;
-
 public class DroppedChunks
 {
+    /*
     public static HashSizeType getDroppedChunksHashSizeType()
     {
         int size = Configs.Generic.DROPPED_CHUNKS_HASH_SIZE.getIntegerValue();
@@ -75,4 +70,5 @@ public class DroppedChunks
             return this.displayName;
         }
     }
+    */
 }

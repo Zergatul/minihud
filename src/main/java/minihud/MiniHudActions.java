@@ -6,7 +6,6 @@ import malilib.listener.EventListener;
 import minihud.config.Configs;
 import minihud.config.InfoLineToggle;
 import minihud.config.RendererToggle;
-import minihud.config.StructureToggle;
 import minihud.data.DataStorage;
 import minihud.gui.ConfigScreen;
 import minihud.gui.GuiShapeEditor;
@@ -31,10 +30,12 @@ public class MiniHudActions
             ActionUtils.registerBooleanConfigActions(Reference.MOD_INFO, toggle.getBooleanConfig(), toggle.getKeyBind());
         }
 
+        /*
         for (StructureToggle toggle : StructureToggle.VALUES)
         {
             ActionUtils.registerBooleanConfigActions(Reference.MOD_INFO, toggle.getBooleanConfig(), toggle.getKeyBind());
         }
+        */
 
         ActionUtils.registerBooleanConfigActions(Configs.Generic.OPTIONS);
     }

@@ -7,7 +7,6 @@ import java.util.OptionalLong;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 
 import malilib.util.position.BlockPos;
-import minihud.config.Configs;
 
 public class WorldProperties
 {
@@ -29,10 +28,12 @@ public class WorldProperties
         this.droppedChunksHashSize = OptionalInt.empty();
         this.worldSpawn = Optional.empty();
 
+        /*
         if (isLogout || Configs.Generic.USE_PER_DIMENSION_SEED.getBooleanValue())
         {
             this.worldSeed = OptionalLong.empty();
         }
+        */
 
         if (isLogout)
         {

@@ -1,5 +1,6 @@
 package minihud.renderer;
 
+/*
 import org.apache.commons.lang3.tuple.Pair;
 
 import net.minecraft.entity.Entity;
@@ -102,3 +103,4 @@ public class OverlayRendererSpawnChunks extends MiniHudOverlayRenderer
         return Pair.of(pos1, pos2);
     }
 }
+*/

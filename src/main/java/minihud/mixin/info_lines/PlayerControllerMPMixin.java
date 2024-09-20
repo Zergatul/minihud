@@ -1,16 +1,6 @@
 package minihud.mixin.info_lines;
 
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import net.minecraft.client.multiplayer.PlayerControllerMP;
-import net.minecraft.util.math.BlockPos;
-
-import minihud.config.InfoLineToggle;
-import minihud.data.DataStorage;
-
+/*
 @Mixin(PlayerControllerMP.class)
 public abstract class PlayerControllerMPMixin
 {
@@ -28,3 +18,4 @@ public abstract class PlayerControllerMPMixin
         }
     }
 }
+*/

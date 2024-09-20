@@ -1,21 +1,15 @@
 package minihud.data;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.entity.living.mob.hostile.HostileEntity;
+import net.minecraft.entity.living.mob.passive.animal.AnimalEntity;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 
-import malilib.render.text.TextRendererUtils;
 import malilib.util.StringUtils;
 import malilib.util.game.wrap.GameWrap;
-import malilib.util.game.wrap.WorldWrap;
 import minihud.data.MobCapData.EntityCategory;
-import minihud.util.MiscUtils;
 
 public class MobCapDataHandler
 {
@@ -134,6 +128,20 @@ public class MobCapDataHandler
     {
         World clientWorld = GameWrap.getClientWorld();
 
+        if (clientWorld != null)
+        {
+            int hostileCount = clientWorld.m_7058473(HostileEntity.class);
+            int passiveCount = clientWorld.m_7058473(AnimalEntity.class);
+            int hostileCap = getHostileCap(clientWorld);
+            int passiveCap = getPassiveCap(clientWorld);
+            long worldTime = clientWorld.time;
+
+            this.localData.setCurrentAndCapValues(EntityCategory.MONSTER, hostileCount, hostileCap, worldTime);
+            this.localData.setCurrentAndCapValues(EntityCategory.CREATURE, passiveCount, passiveCap, worldTime);
+        }
+
+        /* TODO in-20100223
+
         if (GameWrap.isSinglePlayer() && clientWorld != null)
         {
             MinecraftServer server = GameWrap.getIntegratedServer();
@@ -163,8 +171,30 @@ public class MobCapDataHandler
                 });
             });
         }
+        */
     }
 
+    public static int getHostileCap(World world)
+    {
+        int cap = world.xSize * world.zSize * world.ySize * 20 / 64 / 64 / 64 / 2;
+
+        switch (world.difficulty)
+        {
+            case 0:     return 0;
+            case 1:     return cap * 3 / 4;
+            case 2:     return cap;
+            case 3:     return cap * 6 / 4;
+        }
+
+        return 0;
+    }
+
+    public static int getPassiveCap(World world)
+    {
+        return world.xSize * world.zSize / 4000;
+    }
+
+    /*
     public void parsePlayerListFooterMobCapData(ITextComponent textComponent)
     {
         if (GameWrap.getClientWorld() == null)
@@ -209,6 +239,7 @@ public class MobCapDataHandler
             }
         }
     }
+    */
 
     public String getFormattedInfoLine()
     {

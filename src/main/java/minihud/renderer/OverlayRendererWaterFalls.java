@@ -1,5 +1,6 @@
 package minihud.renderer;
 
+/*
 import malilib.util.game.wrap.GameWrap;
 import minihud.config.Configs;
 import minihud.config.RendererToggle;
@@ -23,3 +24,4 @@ public class OverlayRendererWaterFalls extends BaseBlockPositionListOverlayRende
         return render;
     }
 }
+*/

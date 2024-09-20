@@ -19,14 +19,21 @@ import minihud.Reference;
 
 public enum RendererToggle implements ConfigInfo
 {
+    /*
     BEACON_RANGE                        ("beaconRange"),
+    */
     BLOCK_GRID                          ("blockGrid"),
+    /*
     CHUNK_UNLOAD_BUCKET                 ("chunkUnloadBucket", KeyBindSettings.INGAME_BOTH),
+    */
     LIGHT_LEVEL                         ("lightLevel"),
+    /*
     RANDOM_TICKS_FIXED                  ("randomTicksFixed"),
     RANDOM_TICKS_PLAYER                 ("randomTicksPlayer"),
     REGION_FILE                         ("regionFile"),
-    SHAPE_RENDERER                      ("shapeRenderer"),
+    */
+    SHAPE_RENDERER                      ("shapeRenderer");
+    /*
     SLIME_CHUNKS                        ("slimeChunks", KeyBindSettings.INGAME_BOTH),
     SPAWNABLE_CHUNKS_FIXED              ("spawnableChunksFixed"),
     SPAWNABLE_CHUNKS_PLAYER             ("spawnableChunksPlayer"),
@@ -43,6 +50,7 @@ public enum RendererToggle implements ConfigInfo
     DEBUG_HEIGHT_MAP                    ("debugHeightMap"),
     DEBUG_PATH_FINDING                  ("debugPathfinding"),
     DEBUG_WATER                         ("debugWater");
+    */
 
     public static final ImmutableList<RendererToggle> VALUES = ImmutableList.copyOf(values());
     public static final ImmutableList<BooleanConfig> TOGGLE_CONFIGS = ImmutableList.copyOf(VALUES.stream().map(RendererToggle::getBooleanConfig).collect(Collectors.toList()));

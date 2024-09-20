@@ -1,35 +1,8 @@
 package minihud.util;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import com.google.common.collect.MapMaker;
-import io.netty.buffer.Unpooled;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.debug.DebugRendererNeighborsUpdate;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.network.play.server.SPacketCustomPayload;
-import net.minecraft.pathfinding.Path;
-import net.minecraft.pathfinding.PathNavigate;
-import net.minecraft.pathfinding.PathPoint;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.World;
-
-import malilib.util.game.wrap.EntityWrap;
-import malilib.util.game.wrap.GameWrap;
-import malilib.util.game.wrap.WorldWrap;
-import malilib.util.position.BlockPos;
-import minihud.config.Configs;
-import minihud.config.RendererToggle;
-import minihud.mixin.debugrenderer.DebugRendererMixin;
-import minihud.mixin.debugrenderer.path_finding.PathNavigateMixin;
-
 public class DebugInfoUtils
 {
+    /*
     private static boolean neighborUpdateEnabled;
     private static boolean pathFindingEnabled;
     private static int tickCounter;
@@ -128,7 +101,7 @@ public class DebugInfoUtils
         // We are catching updates from the server world, and adding them to the debug renderer directly
         if (neighborUpdateEnabled)
         {
-            NEIGHBOR_UPDATES.add(new NeighborUpdate(pos.toLong(), worldTime));
+            NEIGHBOR_UPDATES.add(new NeighborUpdate(pos.toPackedLong(), worldTime));
         }
     }
 
@@ -279,4 +252,5 @@ public class DebugInfoUtils
             return BlockPos.fromPacked(this.posLong);
         }
     }
+    */
 }

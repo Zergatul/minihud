@@ -4,14 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.lwjgl.opengl.GL11;
 
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
-import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldEntitySpawner;
-import net.minecraft.world.chunk.Chunk;
 
 import malilib.config.option.ColorConfig;
 import malilib.config.option.Vec2dConfig;
@@ -301,6 +295,7 @@ public class OverlayRendererLightLevel extends MiniHudOverlayRenderer
             {
                 final int startZ = Math.max( cz << 4      , minZ);
                 final int endZ   = Math.min((cz << 4) + 15, maxZ);
+                /* TODO in-20100223
                 Chunk chunk = world.getChunk(cx, cz);
 
                 for (int x = startX; x <= endX; ++x)
@@ -334,6 +329,7 @@ public class OverlayRendererLightLevel extends MiniHudOverlayRenderer
                         }
                     }
                 }
+                */
             }
         }
     }
@@ -341,6 +337,7 @@ public class OverlayRendererLightLevel extends MiniHudOverlayRenderer
     /**
      * This method mimics the one from WorldEntitySpawner, but takes in the Chunk to avoid that lookup
      */
+    /*
     public static boolean canSpawnAt(IBlockState stateDown, IBlockState state, IBlockState stateUp, IBlockState stateUp2)
     {
         if (stateDown.isTopSolid() == false ||
@@ -361,6 +358,7 @@ public class OverlayRendererLightLevel extends MiniHudOverlayRenderer
                    WorldEntitySpawner.isValidEmptySpawnBlock(stateUp);
         }
     }
+    */
 
     public static class LightLevelInfo
     {

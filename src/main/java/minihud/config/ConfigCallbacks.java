@@ -1,23 +1,9 @@
 package minihud.config;
 
-import malilib.config.option.BooleanContainingConfig;
-import malilib.input.callback.AdjustableValueHotkeyCallback;
 import malilib.listener.EventListener;
-import malilib.overlay.message.MessageHelpers;
-import malilib.overlay.message.MessageUtils;
 import malilib.render.overlay.OverlayRendererContainer;
-import malilib.util.StringUtils;
-import malilib.util.game.wrap.EntityWrap;
-import malilib.util.position.BlockPos;
-import malilib.util.position.Vec3d;
 import minihud.MiniHudActions;
-import minihud.data.DataStorage;
-import minihud.data.WoolCounters;
-import minihud.data.structure.StructureDataUtils;
-import minihud.network.carpet.CarpetPubsubPacketHandler;
-import minihud.network.servux.ServuxInfoSubDataPacketHandler;
 import minihud.renderer.RenderContainer;
-import minihud.util.DebugInfoUtils;
 
 public class ConfigCallbacks
 {
@@ -30,6 +16,7 @@ public class ConfigCallbacks
         Configs.Hotkeys.OPEN_SHAPE_MANAGER.createCallbackForAction(MiniHudActions.OPEN_SHAPE_MANAGER);
         Configs.Hotkeys.SET_DISTANCE_REFERENCE_POINT.createCallbackForAction(MiniHudActions.SET_DISTANCE_REFERENCE_POINT);
 
+        /*
         InfoLineToggle.CHUNK_UNLOAD_ORDER.getHotkeyConfig().getKeyBind().setCallback(AdjustableValueHotkeyCallback.createBitShifter(
                         InfoLineToggle.CHUNK_UNLOAD_ORDER.getBooleanConfig(), Configs.Generic.DROPPED_CHUNKS_HASH_SIZE)
                     .addAdjustListener(() -> MessageUtils.printCustomActionbarMessage("minihud.message.info.dropped_chunks_hash_size_set_to", Configs.Generic.DROPPED_CHUNKS_HASH_SIZE.getIntegerValue())));
@@ -41,11 +28,13 @@ public class ConfigCallbacks
                 RendererToggle.SLIME_CHUNKS.getBooleanConfig(), Configs.Internal.SLIME_CHUNKS_OVERLAY_TOP_Y));
 
         EventListener beaconUpdateCallback = RenderContainer.BEACON_OVERLAY::setNeedsUpdate;
-        EventListener lightLevelUpdateCallback = RenderContainer.LIGHT_LEVEL_OVERLAY::setNeedsUpdate;
         Configs.Colors.BEACON_RANGE_LVL1_OVERLAY_COLOR.addValueChangeListener(beaconUpdateCallback);
         Configs.Colors.BEACON_RANGE_LVL2_OVERLAY_COLOR.addValueChangeListener(beaconUpdateCallback);
         Configs.Colors.BEACON_RANGE_LVL3_OVERLAY_COLOR.addValueChangeListener(beaconUpdateCallback);
         Configs.Colors.BEACON_RANGE_LVL4_OVERLAY_COLOR.addValueChangeListener(beaconUpdateCallback);
+        */
+
+        EventListener lightLevelUpdateCallback = RenderContainer.LIGHT_LEVEL_OVERLAY::setNeedsUpdate;
         Configs.Generic.LIGHT_LEVEL_COLORED_NUMBERS.addValueChangeListener(lightLevelUpdateCallback);
         Configs.Generic.LIGHT_LEVEL_MARKER_MODE.addValueChangeListener(lightLevelUpdateCallback);
         Configs.Generic.LIGHT_LEVEL_MARKER_SIZE.addValueChangeListener(lightLevelUpdateCallback);
@@ -56,6 +45,7 @@ public class ConfigCallbacks
         Configs.Generic.LIGHT_LEVEL_RANGE.addValueChangeListener(lightLevelUpdateCallback);
         Configs.Generic.LIGHT_LEVEL_THRESHOLD.addValueChangeListener(lightLevelUpdateCallback);
         Configs.Generic.LIGHT_LEVEL_Z_OFFSET.addValueChangeListener(lightLevelUpdateCallback);
+        /*
         Configs.Generic.STRUCTURES_RENDER_THROUGH.setValueChangeCallback((newValue, oldValue) -> RenderContainer.STRUCTURE_BOUNDING_BOXES_OVERLAY.setDisableDepthTest(newValue));
         Configs.Generic.WOOL_COUNTER_TYPES.setValueLoadCallback(WoolCounters.INSTANCE::updateEnabledCounters);
         Configs.Generic.WOOL_COUNTER_TYPES.setValueChangeCallback((newValue, oldValue) -> {
@@ -86,7 +76,10 @@ public class ConfigCallbacks
         RendererToggle.DEBUG_WATER.addValueChangeListener(           () -> DebugInfoUtils.toggleDebugRenderer(RendererToggle.DEBUG_WATER));
 
         RendererToggle.BEACON_RANGE.addValueChangeListener(beaconUpdateCallback);
+        */
+        RendererToggle.BLOCK_GRID.addValueChangeListener(RenderContainer.BLOCK_GRID_OVERLAY::setNeedsUpdate);
         RendererToggle.LIGHT_LEVEL.addValueChangeListener(lightLevelUpdateCallback);
+        /*
         RendererToggle.STRUCTURE_BOUNDING_BOXES.addValueChangeListener(StructureDataUtils::requestStructureDataUpdates);
 
         RendererToggle.CHUNK_UNLOAD_BUCKET.addEnableListener(ConfigCallbacks::onChunkUnloadBucketOverlayEnabled);
@@ -99,8 +92,10 @@ public class ConfigCallbacks
         RendererToggle.RANDOM_TICKS_FIXED.setToggleMessageFactory(ConfigCallbacks::getRandomTicksMessage);
         RendererToggle.SPAWNABLE_CHUNKS_FIXED.setToggleMessageFactory(ConfigCallbacks::getSpawnableChunksMessage);
         RendererToggle.SPAWN_CHUNKS_REAL.setToggleMessageFactory(ConfigCallbacks::getSpawnChunksMessage);
+        */
     }
 
+    /*
     private static void onChunkUnloadBucketOverlayEnabled()
     {
         Vec3d pos = EntityWrap.getCameraEntityPosition();
@@ -150,4 +145,5 @@ public class ConfigCallbacks
 
         return MessageHelpers.getBooleanConfigToggleMessage(config, null);
     }
+    */
 }

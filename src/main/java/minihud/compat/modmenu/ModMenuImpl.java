@@ -1,11 +1,6 @@
 package minihud.compat.modmenu;
 
-import com.terraformersmc.modmenu.api.ConfigScreenFactory;
-import com.terraformersmc.modmenu.api.ModMenuApi;
-
-import malilib.gui.BaseScreen;
-import minihud.gui.ConfigScreen;
-
+/*
 public class ModMenuImpl implements ModMenuApi
 {
     @Override
@@ -18,3 +13,4 @@ public class ModMenuImpl implements ModMenuApi
         };
     }
 }
+*/

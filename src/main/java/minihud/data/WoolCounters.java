@@ -1,12 +1,11 @@
 package minihud.data;
 
+/*
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import net.minecraft.item.EnumDyeColor;
 
 import malilib.util.StringUtils;
 import malilib.util.data.DyeColorCode;
@@ -14,7 +13,7 @@ import minihud.config.Configs;
 
 public class WoolCounters
 {
-    private static final EnumDyeColor[] COLORS = EnumDyeColor.values();
+    private static final DyeColorCode[] COLORS = DyeColorCode.values();
 
     private final long[] counters = new long[COLORS.length];
     private final boolean[] enabledCounters = new boolean[COLORS.length];
@@ -27,12 +26,12 @@ public class WoolCounters
         Arrays.fill(this.counters, -1);
     }
 
-    public boolean isEnabled(EnumDyeColor color)
+    public boolean isEnabled(DyeColorCode color)
     {
         return this.enabledCounters[color.getMetadata()];
     }
 
-    public void setValue(EnumDyeColor color, long value)
+    public void setValue(DyeColorCode color, long value)
     {
         this.counters[color.getMetadata()] = value;
     }
@@ -102,7 +101,7 @@ public class WoolCounters
 
                 if (matcher.matches())
                 {
-                    for (EnumDyeColor color : COLORS)
+                    for (DyeColorCode color : COLORS)
                     {
                         if (color.getName().equalsIgnoreCase(str))
                         {
@@ -116,3 +115,4 @@ public class WoolCounters
         }
     }
 }
+*/

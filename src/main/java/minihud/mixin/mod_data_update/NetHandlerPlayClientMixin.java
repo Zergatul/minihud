@@ -1,27 +1,6 @@
 package minihud.mixin.mod_data_update;
 
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import net.minecraft.client.network.NetHandlerPlayClient;
-import net.minecraft.network.play.server.SPacketBlockChange;
-import net.minecraft.network.play.server.SPacketChat;
-import net.minecraft.network.play.server.SPacketChunkData;
-import net.minecraft.network.play.server.SPacketMultiBlockChange;
-import net.minecraft.network.play.server.SPacketPlayerListHeaderFooter;
-import net.minecraft.network.play.server.SPacketSpawnPosition;
-import net.minecraft.network.play.server.SPacketTimeUpdate;
-
-import malilib.util.position.BlockPos;
-import malilib.util.position.ChunkPos;
-import minihud.data.DataStorage;
-import minihud.data.MobCapDataHandler;
-import minihud.data.TpsDataManager;
-import minihud.util.ChatUtils;
-import minihud.util.NotificationUtils;
-
+/*
 @Mixin(NetHandlerPlayClient.class)
 public abstract class NetHandlerPlayClientMixin
 {
@@ -69,3 +48,4 @@ public abstract class NetHandlerPlayClientMixin
         DataStorage.getInstance().setWorldSpawnIfUnknown(BlockPos.of(packet.getSpawnPos()));
     }
 }
+*/

@@ -1,5 +1,6 @@
 package minihud.data.structure;
 
+/*
 import javax.annotation.Nullable;
 import com.google.common.collect.ArrayListMultimap;
 
@@ -44,6 +45,7 @@ public class StructureStorage
     /**
      * Gets the structure data map, and clears the dirty flag
      */
+    /*
     public ArrayListMultimap<StructureType, StructureData> getStructureDataAndClearDirtyFlag()
     {
         synchronized (INSTANCE)
@@ -123,3 +125,4 @@ public class StructureStorage
                 Math.abs(playerPos.getZ() - this.lastStructureUpdatePos.getZ()) >= hysteresis;
     }
 }
+*/

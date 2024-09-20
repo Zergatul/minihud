@@ -1,5 +1,6 @@
 package minihud.renderer;
 
+/*
 import net.minecraft.entity.Entity;
 
 import malilib.util.MathUtils;
@@ -45,3 +46,4 @@ public class OverlayRendererRegion extends MiniHudOverlayRenderer
         this.uploadBuffers();
     }
 }
+*/

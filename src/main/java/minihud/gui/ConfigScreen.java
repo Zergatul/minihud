@@ -20,7 +20,6 @@ import minihud.Reference;
 import minihud.config.Configs;
 import minihud.config.InfoLineToggle;
 import minihud.config.RendererToggle;
-import minihud.config.StructureToggle;
 import minihud.event.RenderHandler;
 
 public class ConfigScreen
@@ -32,7 +31,9 @@ public class ConfigScreen
     private static final BaseConfigTab HOTKEYS              = new BaseConfigTab(MOD_INFO, "hotkeys",    200, getHotkeys(),              ConfigScreen::create);
     private static final BaseConfigTab INFO_LINES           = new BaseConfigTab(MOD_INFO, "info_lines", 200, getInfoLinesOptions(),     ConfigScreen::create);
     private static final BaseConfigTab OVERLAY_RENDERERS    = new BaseConfigTab(MOD_INFO, "renderers",  200, getRendererOptions(),      ConfigScreen::create);
+    /*
     private static final BaseConfigTab STRUCTURES           = new BaseConfigTab(MOD_INFO, "structures", 200, getStructureOptions(),     ConfigScreen::create);
+    */
     public  static final BaseScreenTab SHAPES               = new BaseScreenTab(MOD_INFO, "shapes", ShapeManagerScreen::screenValidator, ShapeManagerScreen::openShapeManagerScreen);
 
     public static final ImmutableList<ConfigTab> CONFIG_TABS = ImmutableList.of(
@@ -40,8 +41,10 @@ public class ConfigScreen
             COLORS,
             HOTKEYS,
             INFO_LINES,
-            OVERLAY_RENDERERS,
+            OVERLAY_RENDERERS
+            /*
             STRUCTURES
+            */
     );
 
     public static final ImmutableList<ScreenTab> ALL_TABS = ImmutableList.of(
@@ -50,7 +53,9 @@ public class ConfigScreen
             HOTKEYS,
             INFO_LINES,
             OVERLAY_RENDERERS,
+            /*
             STRUCTURES,
+            */
             SHAPES
     );
 
@@ -121,6 +126,7 @@ public class ConfigScreen
         return builder.build();
     }
 
+    /*
     private static ImmutableList<ConfigInfo> getStructureOptions()
     {
         ImmutableList.Builder<ConfigInfo> builder = ImmutableList.builder();
@@ -131,6 +137,7 @@ public class ConfigScreen
 
         return builder.build();
     }
+    */
 
     private static boolean openHudSettingScreen(int mouseButton)
     {

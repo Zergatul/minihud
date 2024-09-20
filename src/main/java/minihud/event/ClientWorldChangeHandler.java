@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.world.World;
 
 import malilib.config.util.ConfigUtils;
 import malilib.util.StringUtils;
@@ -18,7 +18,7 @@ import minihud.renderer.shapes.ShapeManager;
 public class ClientWorldChangeHandler implements malilib.event.ClientWorldChangeHandler
 {
     @Override
-    public void onPreClientWorldChange(@Nullable WorldClient worldBefore, @Nullable WorldClient worldAfter)
+    public void onPreClientWorldChange(@Nullable World worldBefore, @Nullable World worldAfter)
     {
         // Save the settings before the world reference changes or the integrated server gets shut down
         if (worldBefore != null)
@@ -32,7 +32,7 @@ public class ClientWorldChangeHandler implements malilib.event.ClientWorldChange
     }
 
     @Override
-    public void onPostClientWorldChange(@Nullable WorldClient worldBefore, @Nullable WorldClient worldAfter)
+    public void onPostClientWorldChange(@Nullable World worldBefore, @Nullable World worldAfter)
     {
         // Clear the cached data
         DataStorage.INSTANCE.clear(worldAfter == null);

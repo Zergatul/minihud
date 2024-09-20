@@ -1,35 +1,11 @@
 package minihud.util;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.management.PlayerChunkMapEntry;
-import net.minecraft.world.WorldServer;
-import net.minecraft.world.gen.structure.StructureBoundingBox;
-
-import malilib.util.StringUtils;
-import malilib.util.game.wrap.EntityWrap;
-import malilib.util.game.wrap.GameWrap;
-import malilib.util.game.wrap.ItemWrap;
-import malilib.util.game.wrap.NbtWrap;
-import malilib.util.game.wrap.RegistryUtils;
-import malilib.util.nbt.PrettyNbtStringifier;
-import malilib.util.nbt.SimpleNbtStringifier;
-import malilib.util.position.BlockPos;
 import malilib.util.position.ChunkPos;
-import malilib.util.position.IntBoundingBox;
 import minihud.MiniHud;
-import minihud.config.Configs;
-import minihud.data.DroppedChunks;
-import minihud.mixin.info_lines.ChunkProviderServerMixin;
 
 public class MiscUtils
 {
@@ -71,6 +47,7 @@ public class MiscUtils
         return RAND.nextInt(10) == 0;
     }
 
+    /*
     public static int getChunkUnloadBucket(int chunkX, int chunkZ)
     {
         if (Configs.Generic.CHUNK_UNLOAD_BUCKET_HASH_SIZE.getBooleanValue())
@@ -84,10 +61,12 @@ public class MiscUtils
             return (longHash ^ (longHash >>> 16)) & 0xFFFF;
         }
     }
+    */
 
     /**
      * This method has been taken from the Carpet mod, by gnembon
      */
+    /*
     public static int getCurrentHashSize(WorldServer world)
     {
         ChunkProviderServerMixin provider = (ChunkProviderServerMixin) world.getChunkProvider();
@@ -119,7 +98,7 @@ public class MiscUtils
 
         return -1;
     }
-
+    */
 
     /**
      * This method has been taken from the Carpet mod, by gnembon
@@ -140,6 +119,7 @@ public class MiscUtils
         }
     }
 
+    /*
     public static int getSpawnableChunksCount(WorldServer world)
     {
         Set<ChunkPos> eligibleChunksForSpawning = new HashSet<>();
@@ -237,4 +217,5 @@ public class MiscUtils
                playerPos.getZ() >= (bb.minZ - maxRange) &&
                playerPos.getZ() <= (bb.maxZ + maxRange);
     }
+    */
 }

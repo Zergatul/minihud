@@ -1,16 +1,7 @@
 package minihud.data.structure;
 
-import java.util.List;
-import javax.annotation.Nullable;
 import com.google.common.collect.ImmutableList;
 
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.world.gen.structure.StructureComponent;
-import net.minecraft.world.gen.structure.StructureStart;
-
-import malilib.util.data.Constants;
-import malilib.util.game.wrap.NbtWrap;
 import malilib.util.position.IntBoundingBox;
 
 public class StructureData
@@ -34,6 +25,7 @@ public class StructureData
         return this.componentBoxes;
     }
 
+    /*
     public static StructureData fromStructure(StructureStart structure)
     {
         ImmutableList.Builder<IntBoundingBox> builder = ImmutableList.builder();
@@ -74,4 +66,5 @@ public class StructureData
 
         return null;
     }
+    */
 }

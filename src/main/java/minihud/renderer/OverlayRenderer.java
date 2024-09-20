@@ -1,27 +1,10 @@
 package minihud.renderer;
 
-import java.util.Collections;
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 
 import malilib.render.RenderContext;
-import malilib.render.ShapeRenderUtils;
-import malilib.render.TextRenderUtils;
-import malilib.render.buffer.VanillaWrappingVertexBuilder;
-import malilib.render.buffer.VertexBuilder;
-import malilib.util.data.Color4f;
 import malilib.util.game.wrap.EntityWrap;
 import malilib.util.game.wrap.GameWrap;
-import malilib.util.game.wrap.RenderWrap;
-import malilib.util.inventory.InventoryUtils;
-import minihud.config.Configs;
-import minihud.config.RendererToggle;
-import minihud.util.MiscUtils;
 
 public class OverlayRenderer
 {
@@ -69,6 +52,7 @@ public class OverlayRenderer
         double dy = EntityWrap.lerpY(entity, tickDelta);
         double dz = EntityWrap.lerpZ(entity, tickDelta);
 
+        /*
         if (RendererToggle.CHUNK_UNLOAD_BUCKET.isRendererEnabled())
         {
             double overlayY = Configs.Internal.CHUNK_UNLOAD_BUCKET_OVERLAY_Y.getDoubleValue();
@@ -89,8 +73,10 @@ public class OverlayRenderer
         {
             RenderContainer.WATER_FALL_RENDERER.renderPositionText(dx, dy, dz, ctx);
         }
+        */
     }
 
+    /*
     private static void renderChunkUnloadBuckets(Entity entity, double dx, double dy, double dz,
                                                  double chunkOverlayY, RenderContext ctx)
     {
@@ -176,4 +162,5 @@ public class OverlayRenderer
         RenderWrap.disablePolygonOffset();
         RenderWrap.enableCull();
     }
+    */
 }

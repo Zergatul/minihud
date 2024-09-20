@@ -18,42 +18,60 @@ import minihud.Reference;
 
 public enum InfoLineToggle implements ConfigInfo
 {
+    /*
     BIOME                   ("infoBiomeName",               false, 19),
     BIOME_REG_NAME          ("infoBiomeRegistryName",       false, 20),
+    */
     BLOCK_BREAK_SPEED       ("infoBlockBreakSpeed",         false,  6),
     BLOCK_ENTITIES          ("infoBlockEntities",           false, 32),
+    /*
     BLOCK_IN_CHUNK          ("infoBlockInChunk",            false, 28),
+    */
     BLOCK_POS               ("infoBlockPosition",           false,  6),
     BLOCK_PROPS             ("infoBlockProperties",         false, 27),
+    /*
     CARPET_WOOL_COUNTERS    ("infoCarpetWoolCounters",      false, 50),
     CHUNK_POS               ("infoChunkPosition",           false,  7),
     CHUNK_SECTIONS          ("infoChunkSections",           false, 14),
     CHUNK_SECTIONS_FULL     ("infoChunkSectionsLine",       false, 15),
     CHUNK_UNLOAD_ORDER      ("infoChunkUnloadOrder",        false, 30),
     CHUNK_UPDATES           ("infoChunkUpdates",            false, 16),
+    */
     COORDINATES             ("infoCoordinates",             true,   4),
     DIFFICULTY              ("infoDifficulty",              false, 18),
+    /*
     DIMENSION               ("infoDimensionId",             false,  5),
+    */
     DISTANCE                ("infoDistance",                false, 33),
     ENTITIES                ("infoEntities",                false, 21),
     ENTITIES_CLIENT_WORLD   ("infoEntitiesClientWorld",     false, 22),
+    /*
     ENTITY_REG_NAME         ("infoEntityRegistryName",      false, 24),
+    */
     FPS                     ("infoFPS",                     false,  0),
     LIGHT_LEVEL             ("infoLightLevel",              false, 10),
+    /*
     LOADED_CHUNKS_COUNT     ("infoLoadedChunksCount",       false, 31),
+    */
     LOOKING_AT_BLOCK        ("infoLookingAtBlock",          false, 25),
     LOOKING_AT_BLOCK_CHUNK  ("infoLookingAtBlockInChunk",   false, 26),
     LOOKING_AT_ENTITY       ("infoLookingAtEntity",         false, 23),
     MEMORY_USAGE            ("infoMemoryUsage",             false,  0),
     MOB_CAPS                ("infoMobCaps",                 false, 40),
     PARTICLE_COUNT          ("infoParticleCount",           false, 17),
+    /*
     PING                    ("infoPing",                    false, 36),
+    */
     PLAYER_FACING           ("infoPlayerFacing",            true,   8),
     PLAYER_PITCH_ROTATION   ("infoPlayerPitchRotation",     false, 12),
     PLAYER_YAW_ROTATION     ("infoPlayerYawRotation",       false, 11),
+    /*
     REGION_FILE             ("infoRegionFile",              false, 29),
+    */
     SERVER_TPS              ("infoServerTPS",               false,  9),
+    /*
     SLIME_CHUNK             ("infoSlimeChunk",              false, 22),
+    */
     SPEED                   ("infoSpeed",                   false, 13),
     SPEED_AXIS              ("infoSpeedAxis",               false, 13),
     TIME_REAL               ("infoTimeIRL",                 true,   1),

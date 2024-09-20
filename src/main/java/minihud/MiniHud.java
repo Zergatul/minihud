@@ -1,6 +1,6 @@
 package minihud;
 
-import net.ornithemc.osl.entrypoints.api.client.ClientModInitializer;
+import net.fabricmc.api.ClientModInitializer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,7 +20,7 @@ public class MiniHud implements ClientModInitializer
     }
 
     @Override
-    public void initClient()
+    public void onInitializeClient()
     {
         Registry.INITIALIZATION_DISPATCHER.registerInitializationHandler(new InitHandler());
     }

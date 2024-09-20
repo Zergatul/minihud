@@ -38,6 +38,6 @@ public class OrderedBlockPosLong
 
     public static OrderedBlockPosLong of(BlockPos pos, int order)
     {
-        return new OrderedBlockPosLong(pos.toLong(), order);
+        return new OrderedBlockPosLong(pos.toPackedLong(), order);
     }
 }

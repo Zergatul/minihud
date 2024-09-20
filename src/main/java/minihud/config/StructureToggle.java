@@ -1,5 +1,6 @@
 package minihud.config;
 
+/*
 import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -154,3 +155,4 @@ public enum StructureToggle implements ConfigInfo
         this.colorComponents.resetToDefault();
     }
 }
+*/

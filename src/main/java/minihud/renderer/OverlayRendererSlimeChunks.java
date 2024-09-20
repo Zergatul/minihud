@@ -1,5 +1,6 @@
 package minihud.renderer;
 
+/*
 import com.google.gson.JsonObject;
 
 import net.minecraft.entity.Entity;
@@ -142,3 +143,4 @@ public class OverlayRendererSlimeChunks extends MiniHudOverlayRenderer
         this.topY = JsonUtils.getDoubleOrDefault(obj, "top_y", 80);
     }
 }
+*/

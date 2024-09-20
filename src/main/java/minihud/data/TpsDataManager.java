@@ -1,14 +1,8 @@
 package minihud.data;
 
 import java.util.function.Consumer;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.text.ITextComponent;
-
-import malilib.render.text.TextRendererUtils;
-import malilib.util.MathUtils;
 import malilib.util.StringUtils;
 import malilib.util.game.wrap.GameWrap;
 
@@ -98,16 +92,17 @@ public class TpsDataManager
 
     public void updateIntegratedServerTps()
     {
-        MinecraftServer server = GameWrap.getIntegratedServer();
-
-        if (server != null && GameWrap.getClientWorld() != null)
+        if (GameWrap.getClientWorld() != null)
         {
+            /* TODO in-20100223
             double mspt = MathUtils.average(server.tickTimeArray) / 1000000.0;
             double tps = mspt <= 50.0 ? 20.0 : (1000.0 / mspt);
             this.localData.setValues(tps, mspt, GameWrap.getCurrentWorldTick());
+            */
         }
     }
 
+    /*
     public void parsePlayerListFooterTpsData(ITextComponent textComponent)
     {
         if (this.subscribedData.isValid() == false &&
@@ -134,6 +129,7 @@ public class TpsDataManager
             }
         }
     }
+    */
 
     public String getFormattedInfoLine()
     {

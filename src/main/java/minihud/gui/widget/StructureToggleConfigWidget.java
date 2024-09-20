@@ -1,5 +1,6 @@
 package minihud.gui.widget;
 
+/*
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 
 import malilib.gui.config.ConfigWidgetContext;
@@ -130,3 +131,4 @@ public class StructureToggleConfigWidget extends BaseConfigWidget<StructureToggl
         this.ctx.getListWidget().refreshEntries();
     }
 }
+*/

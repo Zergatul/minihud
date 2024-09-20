@@ -17,7 +17,7 @@
 	"icon": "assets/minihud/icon.png",
 	"environment": "client",
 	"entrypoints": {
-		"client-init": [
+		"client": [
 			"minihud.MiniHud"
 		],
 		"modmenu": [
@@ -33,9 +33,7 @@
 	],
 
 	"depends": {
-		"minecraft": "1.12.x",
-		"malilib": ">=0.55.0",
-		"osl-entrypoints": "*",
-		"osl-resource-loader": "*"
+		"minecraft": "0.31.20100223",
+		"malilib": ">=0.55.0"
 	}
 }

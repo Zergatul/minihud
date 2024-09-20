@@ -2,7 +2,7 @@ package minihud.gui;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.screen.Screen;
 
 import malilib.gui.BaseListScreen;
 import malilib.gui.BaseScreen;
@@ -117,7 +117,7 @@ public class ShapeManagerScreen extends BaseListScreen<DataListWidget<ShapeBase>
         }
     }
 
-    public static boolean screenValidator(@Nullable GuiScreen currentScreen)
+    public static boolean screenValidator(@Nullable Screen currentScreen)
     {
         return currentScreen instanceof ShapeManagerScreen || currentScreen instanceof GuiShapeEditor;
     }

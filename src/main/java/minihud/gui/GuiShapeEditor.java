@@ -241,7 +241,7 @@ public class GuiShapeEditor extends BaseLayerRangeEditScreen
 
         String name = org.apache.commons.lang3.StringUtils.capitalize(supplier.get().toString().toLowerCase());
         GenericButton button = GenericButton.create(50, 20, name);
-        button.setActionListener((btn) -> { consumer.accept(supplier.get().cycle(btn == 1)); this.initGui(); return true; });
+        button.setActionListener((btn) -> { consumer.accept(supplier.get().cycle(btn == 1)); this.initScreen(); return true; });
         button.setPosition(x, y);
 
         this.addWidget(button);
@@ -256,7 +256,7 @@ public class GuiShapeEditor extends BaseLayerRangeEditScreen
         y += 10;
 
         GenericButton button = GenericButton.create(supplier.get().getDisplayName());
-        button.setActionListener((btn) -> { consumer.accept(ListUtils.getNextEntry(ShapeRenderType.VALUES, supplier.get(), btn != 0)); this.initGui(); return true; });
+        button.setActionListener((btn) -> { consumer.accept(ListUtils.getNextEntry(ShapeRenderType.VALUES, supplier.get(), btn != 0)); this.initScreen(); return true; });
         button.setPosition(x, y);
         this.addWidget(button);
     }

@@ -1,5 +1,6 @@
 package minihud.network.servux;
 
+/*
 import java.util.List;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableList;
@@ -49,11 +50,9 @@ public class ServuxStructurePacketHandler extends BasePacketHandler
                 NBTTagCompound tag = buf.readCompoundTag();
                 StructureStorage.INSTANCE.addStructureDataFromServer(this.readStructureDataServuxV1(tag));
             }
-            /*
-            else if (type == SERVUX_PACKET_S2C_METADATA)
-            {
-            }
-            */
+            //else if (type == SERVUX_PACKET_S2C_METADATA)
+            //{
+            //}
 
             buf.readerIndex(0);
         }
@@ -87,3 +86,4 @@ public class ServuxStructurePacketHandler extends BasePacketHandler
         return map;
     }
 }
+*/

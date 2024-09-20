@@ -1,5 +1,6 @@
 package minihud.network.servux;
 
+/*
 import java.util.List;
 import com.google.common.collect.ImmutableList;
 
@@ -52,3 +53,4 @@ public class ServuxInfoSubRegistrationPacketHandler extends BasePacketHandler
         }
     }
 }
+*/

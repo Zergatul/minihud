@@ -9,45 +9,25 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
+import org.lwjgl.Sys;
 
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.network.NetworkPlayerInfo;
-import net.minecraft.client.renderer.chunk.RenderChunk;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemMap;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.EnumSkyBlock;
+import net.minecraft.entity.living.LivingEntity;
+import net.minecraft.entity.living.player.PlayerEntity;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
-import net.minecraft.world.WorldType;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.Chunk;
 
 import malilib.config.value.ScreenLocation;
 import malilib.event.PostGameOverlayRenderer;
-import malilib.event.PostItemTooltipRenderer;
 import malilib.event.PostWorldRenderer;
-import malilib.gui.BaseScreen;
 import malilib.overlay.InfoArea;
 import malilib.overlay.widget.StringListRendererWidget;
 import malilib.registry.Registry;
 import malilib.render.RenderContext;
-import malilib.render.RenderUtils;
-import malilib.render.inventory.InventoryRenderUtils;
 import malilib.util.MathUtils;
 import malilib.util.StringUtils;
-import malilib.util.game.BlockUtils;
 import malilib.util.game.wrap.EntityWrap;
 import malilib.util.game.wrap.GameWrap;
-import malilib.util.game.wrap.RegistryUtils;
-import malilib.util.game.wrap.RenderWrap;
-import malilib.util.game.wrap.WorldWrap;
 import malilib.util.position.BlockPos;
 import malilib.util.position.Direction;
 import malilib.util.position.HitResult;
@@ -55,19 +35,13 @@ import malilib.util.position.Vec3d;
 import minihud.Reference;
 import minihud.config.Configs;
 import minihud.config.InfoLineToggle;
-import minihud.config.RendererToggle;
 import minihud.data.DataStorage;
-import minihud.data.DroppedChunks;
-import minihud.data.DroppedChunks.HashSizeType;
 import minihud.data.MobCapDataHandler;
 import minihud.data.TpsDataManager;
-import minihud.data.WoolCounters;
-import minihud.data.structure.StructureStorage;
-import minihud.mixin.info_lines.RenderGlobalMixin;
 import minihud.renderer.OverlayRenderer;
 import minihud.util.MiscUtils;
 
-public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRenderer, PostWorldRenderer
+public class RenderHandler implements PostGameOverlayRenderer, PostWorldRenderer
 {
     public static final RenderHandler INSTANCE = new RenderHandler();
     private final Supplier<String> profilerSectionSupplier = () -> "MiniHUD_RenderHandler";
@@ -76,7 +50,7 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
     private StringListRendererWidget stringListRenderer;
     private int fps;
     private int fpsCounter;
-    private long fpsUpdateTime = Minecraft.getSystemTime();
+    private long fpsUpdateTime = getSystemTime();
     private long infoUpdateTime;
     private boolean enabled;
     private boolean ready;
@@ -86,6 +60,11 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
 
     private RenderHandler()
     {
+    }
+
+    public static long getSystemTime()
+    {
+        return Sys.getTime() * 1000L / Sys.getTimerResolution();
     }
 
     @Nullable
@@ -171,12 +150,14 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
 
     public static void fixDebugRendererState()
     {
+        /*
         if (Configs.Generic.FIX_VANILLA_DEBUG_RENDERERS.getBooleanValue())
         {
             RenderWrap.disableLighting();
             //RenderWrap.color(1, 1, 1, 1);
             //OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
         }
+        */
     }
 
     @Override
@@ -206,6 +187,7 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
         }
     }
 
+    /*
     @Override
     public void onPostRenderItemTooltip(ItemStack stack, int x, int y, RenderContext ctx)
     {
@@ -237,6 +219,7 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
             }
         }
     }
+    */
 
     @Override
     public void onPostWorldRender(RenderContext ctx, float tickDelta)
@@ -264,7 +247,7 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
     {
         ++this.fpsCounter;
 
-        long currentTime = Minecraft.getSystemTime();
+        long currentTime = getSystemTime();
 
         if (currentTime >= (this.fpsUpdateTime + 1000L))
         {
@@ -279,9 +262,13 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
         boolean wasEnabled = this.enabled;
 
         this.enabled = Configs.Generic.INFO_LINES_RENDERING_TOGGLE.getBooleanValue() &&
+                       /*
                        mc.gameSettings.showDebugInfo == false &&
+                       */
                        mc.player != null && mc.world != null && GameWrap.isHideGui() == false &&
+                       /*
                        (Configs.Generic.REQUIRE_SNEAK.getBooleanValue() == false || mc.player.isSneaking()) &&
+                       */
                         Configs.Hotkeys.REQUIRED_KEY.getKeyBind().isKeyBindHeld();
 
         // Update the string list renderer to remove MiniHUD's info lines when the HUD is disabled
@@ -292,7 +279,7 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
 
         if (mc.world != null)
         {
-            long worldTick = mc.world.getTotalWorldTime();
+            long worldTick = GameWrap.getCurrentWorldTick();
 
             if ((worldTick % 20) == 0)
             {
@@ -301,10 +288,12 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
                     MobCapDataHandler.INSTANCE.updateIntegratedServerMobCaps();
                 }
 
+                /*
                 if (RendererToggle.STRUCTURE_BOUNDING_BOXES.isRendererEnabled())
                 {
                     StructureStorage.INSTANCE.updateStructureDataIfNeeded();
                 }
+                */
             }
         }
     }
@@ -374,15 +363,17 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
     private void addLine(InfoLineToggle type)
     {
         Minecraft mc = GameWrap.getClient();
-        Entity entity = mc.getRenderViewEntity();
-        World world = entity.getEntityWorld();
+        PlayerEntity entity = GameWrap.getClientPlayer();
+        World world = GameWrap.getClientWorld();
         HitResult hitResult = GameWrap.getHitResult();
         double x = EntityWrap.getX(entity);
         double y = EntityWrap.getY(entity);
         double z = EntityWrap.getZ(entity);
-        double bbY = entity.getEntityBoundingBox().minY;
+        double bbY = entity.shape.minY;
         BlockPos pos = BlockPos.ofFloored(x, bbY, z);
+        /*
         DataStorage data = DataStorage.getInstance();
+        */
 
         if (type == InfoLineToggle.FPS)
         {
@@ -417,15 +408,16 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
         }
         else if (type == InfoLineToggle.TIME_WORLD)
         {
-            long current = world.getWorldTime();
-            long total = world.getTotalWorldTime();
-            this.addLine(String.format("World time: %5d - total: %d", current, total));
+            long current = GameWrap.getCurrentWorldTick();
+            this.addLine(String.format("World tick: %d", current));
+            //long total = world.getTotalWorldTime();
+            //this.addLine(String.format("World time: %5d - total: %d", current, total));
         }
         else if (type == InfoLineToggle.TIME_WORLD_FORMATTED)
         {
             try
             {
-                long timeDay = world.getWorldTime();
+                long timeDay = GameWrap.getCurrentWorldTick();
                 long day = (int) (timeDay / 24000);
                 // 1 tick = 3.6 seconds in MC (0.2777... seconds IRL)
                 int dayTicks = (int) (timeDay % 24000);
@@ -450,20 +442,20 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
         else if (type == InfoLineToggle.TIME_DAY_MODULO)
         {
             int mod = Configs.Generic.TIME_DAY_DIVISOR.getIntegerValue();
-            long current = world.getWorldTime() % mod;
+            long current = GameWrap.getCurrentWorldTick() % mod;
             this.addLine(String.format("Day time %% %d: %5d", mod, current));
         }
         else if (type == InfoLineToggle.TIME_TOTAL_MODULO)
         {
             int mod = Configs.Generic.TIME_TOTAL_DIVISOR.getIntegerValue();
-            long current = world.getTotalWorldTime() % mod;
+            long current = GameWrap.getCurrentWorldTick() % mod;
             this.addLine(String.format("Total time %% %d: %5d", mod, current));
         }
         else if (type == InfoLineToggle.SERVER_TPS)
         {
             TpsDataManager tpsData = TpsDataManager.INSTANCE;
 
-            if (mc.isSingleplayer() && (mc.getIntegratedServer().getTickCounter() % 10) == 0)
+            if (GameWrap.isSinglePlayer() && (GameWrap.getCurrentWorldTick() % 10) == 0)
             {
                 tpsData.updateIntegratedServerTps();
             }
@@ -477,7 +469,7 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
         {
             MobCapDataHandler mobCapData = MobCapDataHandler.INSTANCE;
 
-            if (mc.isSingleplayer() && (mc.getIntegratedServer().getTickCounter() % 100) == 0)
+            if (GameWrap.isSinglePlayer() && (GameWrap.getCurrentWorldTick() % 100) == 0)
             {
                 mobCapData.updateIntegratedServerMobCaps();
             }
@@ -487,6 +479,7 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
                 this.addLine(mobCapData.getFormattedInfoLine());
             }
         }
+        /*
         else if (type == InfoLineToggle.PING)
         {
             // The ping is useless in single player
@@ -502,12 +495,16 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
         }
         else if (type == InfoLineToggle.COORDINATES ||
                  type == InfoLineToggle.DIMENSION)
+        */
+        else if (type == InfoLineToggle.COORDINATES)
         {
+            /*
             // Don't add the same line multiple times
             if (this.addedTypes.contains(InfoLineToggle.COORDINATES) || this.addedTypes.contains(InfoLineToggle.DIMENSION))
             {
                 return;
             }
+            */
 
             String pre = "";
             StringBuilder str = new StringBuilder(128);
@@ -518,8 +515,7 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
                 {
                     try
                     {
-                        str.append(String.format(Configs.Generic.COORDINATE_FORMAT_STRING.getValue(),
-                            x, bbY, z));
+                        str.append(String.format(Configs.Generic.COORDINATE_FORMAT_STRING.getValue(), x, bbY, z));
                     }
                     // Uh oh, someone done goofed their format string... :P
                     catch (Exception e)
@@ -529,23 +525,31 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
                 }
                 else
                 {
-                    str.append(String.format("x: %.1f y: %.1f z: %.1f",
-                        x, bbY, z));
+                    str.append(String.format("x: %.1f y: %.1f z: %.1f", x, bbY, z));
                 }
 
                 pre = " / ";
             }
 
+            /*
             if (InfoLineToggle.DIMENSION.getBooleanValue())
             {
                 str.append(String.format("%sDimType ID: %s", pre, WorldWrap.getDimensionIdAsString(world)));
             }
+            */
 
             this.addLine(str.toString());
 
+            /*
             this.addedTypes.add(InfoLineToggle.COORDINATES);
             this.addedTypes.add(InfoLineToggle.DIMENSION);
+            */
         }
+        else if (type == InfoLineToggle.BLOCK_POS)
+        {
+            this.addLine(String.format("Block: %d, %d, %d", pos.getX(), pos.getY(), pos.getZ()));
+        }
+        /*
         else if (type == InfoLineToggle.BLOCK_POS ||
                  type == InfoLineToggle.CHUNK_POS ||
                  type == InfoLineToggle.REGION_FILE)
@@ -590,6 +594,7 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
                         pos.getX() & 0xF, pos.getY() & 0xF, pos.getZ() & 0xF,
                         pos.getX() >> 4, pos.getY() >> 4, pos.getZ() >> 4));
         }
+        */
         else if (type == InfoLineToggle.BLOCK_BREAK_SPEED)
         {
             this.addLine(String.format("BBS: %.2f", DataStorage.getInstance().getBlockBreakingSpeed()));
@@ -619,6 +624,7 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
         }
         else if (type == InfoLineToggle.LIGHT_LEVEL)
         {
+            /* TODO in-20100223
             // Prevent a crash when outside of world
             if (pos.getY() >= 0 && pos.getY() < 256 && mc.world.isBlockLoaded(pos))
             {
@@ -632,6 +638,7 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
                             chunk.getLightFor(EnumSkyBlock.SKY, pos)));
                 }
             }
+            */
         }
         else if (type == InfoLineToggle.PLAYER_YAW_ROTATION ||
                  type == InfoLineToggle.PLAYER_PITCH_ROTATION ||
@@ -662,9 +669,9 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
 
             if (InfoLineToggle.SPEED.getBooleanValue())
             {
-                double dx = x - entity.lastTickPosX;
-                double dy = y - entity.lastTickPosY;
-                double dz = z - entity.lastTickPosZ;
+                double dx = x - entity.prevX;
+                double dy = y - entity.prevY;
+                double dz = z - entity.prevZ;
                 double dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
                 str.append(pre).append(String.format("speed: %.3f m/s", dist * 20));
             }
@@ -677,11 +684,12 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
         }
         else if (type == InfoLineToggle.SPEED_AXIS)
         {
-            double dx = x - entity.lastTickPosX;
-            double dy = y - entity.lastTickPosY;
-            double dz = z - entity.lastTickPosZ;
+            double dx = x - entity.prevX;
+            double dy = y - entity.prevY;
+            double dz = z - entity.prevZ;
             this.addLine(String.format("speed: x: %.3f y: %.3f z: %.3f m/s", dx * 20, dy * 20, dz * 20));
         }
+        /*
         else if (type == InfoLineToggle.CARPET_WOOL_COUNTERS)
         {
             List<String> lines = WoolCounters.INSTANCE.getInfoLines();
@@ -731,10 +739,12 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
                 this.addLine(chunksClient);
             }
         }
+        */
         else if (type == InfoLineToggle.PARTICLE_COUNT)
         {
-            this.addLine(String.format("P: %s", mc.effectRenderer.getStatistics()));
+            this.addLine(String.format("P: %s", mc.particleManager.m_1451998()));
         }
+        /* TODO in-20100223
         else if (type == InfoLineToggle.DIFFICULTY)
         {
             if (mc.world.isBlockLoaded(pos))
@@ -784,27 +794,31 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
                 }
             }
         }
+        */
         else if (type == InfoLineToggle.ENTITIES)
         {
-            String ent = mc.renderGlobal.getDebugInfoEntities();
+            String ent = world.getEntitiesDebugInfo();
 
+            /*
             int p = ent.indexOf(",");
 
             if (p != -1)
             {
                 ent = ent.substring(0, p);
             }
+            */
 
             this.addLine(ent);
         }
         else if (type == InfoLineToggle.BLOCK_ENTITIES)
         {
-            this.addLine(String.format("Client world TE - L: %d, T: %d", mc.world.loadedTileEntityList.size(), mc.world.tickableTileEntities.size()));
+            this.addLine(String.format("World BE: %d", mc.world.blockEntites.size()));
         }
         else if (type == InfoLineToggle.ENTITIES_CLIENT_WORLD)
         {
-            int countClient = mc.world.loadedEntityList.size();
+            int countClient = mc.world.f_7148360.f_6899876.size();
 
+            /*
             if (mc.isIntegratedServerRunning())
             {
                 World serverWorld = WorldWrap.getBestWorld();
@@ -816,9 +830,11 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
                     return;
                 }
             }
+            */
 
-            this.addLine(String.format("Entities - Client: %d", countClient));
+            this.addLine(String.format("Entities: %d", countClient));
         }
+        /*
         else if (type == InfoLineToggle.SLIME_CHUNK)
         {
             if (world.provider.isSurfaceWorld() == false)
@@ -848,25 +864,40 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
 
             this.addLine(StringUtils.translate(result));
         }
+        */
         else if (type == InfoLineToggle.LOOKING_AT_ENTITY)
         {
             if (hitResult.type == HitResult.Type.ENTITY &&
                 hitResult.entity != null)
             {
                 Entity target = hitResult.entity;
+                String name = "?";
 
-                if (target instanceof EntityLivingBase)
+                if (target instanceof LivingEntity)
                 {
-                    EntityLivingBase living = (EntityLivingBase) target;
-                    this.addLine(String.format("Entity: %s - HP: %.1f / %.1f",
-                            target.getName(), living.getHealth(), living.getMaxHealth()));
+                    LivingEntity living = (LivingEntity) target;
+                    String texture = living.getTexture();
+                    int lastSlash = texture.lastIndexOf('/');
+
+                    if (lastSlash >= 0)
+                    {
+                        int lastDot = texture.lastIndexOf('.');
+
+                        if (lastDot >= 0 && lastDot > lastSlash)
+                        {
+                            name = texture.substring(lastSlash + 1, lastDot);
+                        }
+                    }
+
+                    this.addLine(String.format("Entity: %s - HP: %d / %d", name, living.health, living.maxHealth));
                 }
                 else
                 {
-                    this.addLine(String.format("Entity: %s", target.getName()));
+                    this.addLine(String.format("Entity: %s", name));
                 }
             }
         }
+        /*
         else if (type == InfoLineToggle.ENTITY_REG_NAME)
         {
             if (hitResult.type == HitResult.Type.ENTITY &&
@@ -880,6 +911,7 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
                 }
             }
         }
+        */
         else if (type == InfoLineToggle.LOOKING_AT_BLOCK ||
                  type == InfoLineToggle.LOOKING_AT_BLOCK_CHUNK)
         {
@@ -928,6 +960,7 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
         if (hitResult.type == HitResult.Type.BLOCK)
         {
             BlockPos posLooking = hitResult.blockPos;
+            /* TODO in-20100223
             IBlockState state = mc.world.getBlockState(posLooking);
 
             if (mc.world.getWorldType() != WorldType.DEBUG_ALL_BLOCK_STATES)
@@ -941,6 +974,7 @@ public class RenderHandler implements PostGameOverlayRenderer, PostItemTooltipRe
             {
                 this.addLine(line);
             }
+            */
         }
     }
 

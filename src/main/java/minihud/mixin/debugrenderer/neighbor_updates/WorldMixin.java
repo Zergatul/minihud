@@ -1,5 +1,6 @@
 package minihud.mixin.debugrenderer.neighbor_updates;
 
+/*
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -26,3 +27,4 @@ public abstract class WorldMixin
         DebugInfoUtils.onNeighborNotify(malilib.util.position.BlockPos.of(pos), this.worldInfo.getWorldTotalTime());
     }
 }
+*/

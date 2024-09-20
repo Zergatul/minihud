@@ -6,20 +6,13 @@ import java.util.OptionalLong;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
-import net.minecraft.world.World;
-
 import malilib.overlay.message.MessageUtils;
 import malilib.util.data.json.JsonUtils;
 import malilib.util.game.wrap.EntityWrap;
 import malilib.util.game.wrap.GameWrap;
-import malilib.util.game.wrap.WorldWrap;
 import malilib.util.position.BlockPos;
 import malilib.util.position.Vec3d;
-import minihud.data.structure.StructureDataUtils;
-import minihud.data.structure.StructureStorage;
 import minihud.event.RenderHandler;
-import minihud.network.carpet.CarpetPubsubPacketHandler;
-import minihud.network.servux.ServuxInfoSubDataPacketHandler;
 import minihud.renderer.RenderContainer;
 import minihud.renderer.shapes.ShapeManager;
 import minihud.util.MiscUtils;
@@ -29,13 +22,17 @@ public class DataStorage
     public static final DataStorage INSTANCE = new DataStorage();
 
     protected final WorldProperties worldProperties = new WorldProperties();
+    /*
     public final WorldGenPositions worldGenPositions;
+    */
     private final int[] blockBreakCounter = new int[100];
     private Vec3d distanceReferencePoint = Vec3d.ZERO;
 
     public DataStorage()
     {
+        /*
         this.worldGenPositions = new WorldGenPositions(this.worldProperties);
+        */
     }
 
     public static DataStorage getInstance()
@@ -50,11 +47,12 @@ public class DataStorage
 
         MobCapDataHandler.INSTANCE.clear();
         ShapeManager.INSTANCE.clear();
-        StructureStorage.INSTANCE.clear();
         TpsDataManager.INSTANCE.clear();
+        /*
         WoolCounters.INSTANCE.clear();
 
         RenderContainer.BEACON_OVERLAY.clear();
+        StructureStorage.INSTANCE.clear();
 
         if (isLogout)
         {
@@ -67,11 +65,14 @@ public class DataStorage
             ServuxInfoSubDataPacketHandler.INSTANCE.updateSubscriptions();
             StructureDataUtils.requestStructureDataUpdates();
         }
+        */
     }
 
     public void afterWorldLoad()
     {
+        /*
         RenderContainer.BEACON_OVERLAY.setNeedsUpdate();
+        */
         RenderHandler.INSTANCE.setReady(true);
     }
 
@@ -98,6 +99,7 @@ public class DataStorage
         this.worldProperties.droppedChunksHashSize = OptionalInt.of(size);
     }
 
+    /*
     public boolean isWorldSeedKnown(World world)
     {
         if (this.worldProperties.worldSeed.isPresent())
@@ -111,6 +113,7 @@ public class DataStorage
 
         return false;
     }
+    */
 
     public boolean hasStoredWorldSeed()
     {
@@ -122,6 +125,7 @@ public class DataStorage
         return this.worldProperties.worldSeed.isPresent() ? this.worldProperties.worldSeed.getAsLong() : 0;
     }
 
+    /*
     public long getWorldSeed(World world)
     {
         if (this.hasStoredWorldSeed() == false && GameWrap.isSinglePlayer())
@@ -136,6 +140,7 @@ public class DataStorage
 
         return this.worldProperties.worldSeed.isPresent() ? this.worldProperties.worldSeed.getAsLong() : 0;
     }
+    */
 
     public boolean isWorldSpawnKnown()
     {
@@ -166,7 +171,9 @@ public class DataStorage
     public void onBlocksChangedInChunk(int chunkX, int chunkZ)
     {
         RenderContainer.LIGHT_LEVEL_OVERLAY.setNeedsUpdate();
+        /*
         RenderContainer.SPAWNABLE_COLUMN_HEIGHTS_OVERLAY.markChunkChanged(chunkX, chunkZ);
+        */
     }
 
     public void clearBlockBreakCounter()
